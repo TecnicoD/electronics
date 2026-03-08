@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrónica Usada | Catálogo</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Catálogo de productos de electrónica usada en excelente estado. Contactactanos directo por WhatsApp.">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Hoja de Estilos de la aplicación -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="carousel-container">
+        <!-- El bloque de visualización del producto donde JS inyectará el contenido dinámicamente -->
+        <section id="product-display" class="product-display" aria-live="polite">
+            <!-- El contenido se renderiza aquí -->
+        </section>
+
+        <!-- Controles de navegación del carrusel -->
+        <button id="prev-btn" class="nav-btn prev-btn" aria-label="Ver producto anterior">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button id="next-btn" class="nav-btn next-btn" aria-label="Ver siguiente producto">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        
+        <!-- Indicadores de estado visuales en el carrusel -->
+        <div id="indicators" class="indicators" aria-hidden="true">
+            <!-- Puntos dinámicos -->
+        </div>
+    </main>
+
+    <!-- Script de la aplicación -->
+    <script src="js/app.js"></script>
+</body>
+</html>
