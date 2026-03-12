@@ -98,8 +98,15 @@ function renderProduct(index) {
 
     // Determinar URL de WhatsApp (detecta si es móvil o web)
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const whatsappBaseUrl = isMobile ? 'https://wa.me/' : 'https://web.whatsapp.com/send?phone=';
-    const finalWhatsAppUrl = `${whatsappBaseUrl}${WHATSAPP_NUMBER}&text=${encodedMessage}`;
+    //const whatsappBaseUrl = isMobile ? 'https://wa.me/' : 'https://web.whatsapp.com/send?phone=';
+   // const finalWhatsAppUrl = `${whatsappBaseUrl}${WHATSAPP_NUMBER}&text=${encodedMessage}`;
+    let finalWhatsAppUrl;
+
+if (isMobile) {
+    finalWhatsAppUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+} else {
+    finalWhatsAppUrl = `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
+}
 
     // Construir estructura DOM
     productDisplay.innerHTML = `
