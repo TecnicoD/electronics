@@ -12,57 +12,57 @@ const productos = [
     {
         id: 1,
         nombre: "Reloj digital 1",
-        imagen: "images/reloj1.jpeg"
-        //"https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/reloj1.jpeg",
+        precio: "$15.000"
     },
     {
         id: 2,
         nombre: "Auriculares Inalámbricos Pro",
-        imagen: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=600&auto=format&fit=crop"
+        imagen: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=600&auto=format&fit=crop",
+        precio: "$25.000"
     },
     {
         id: 3,
         nombre: "Mochilas",
-        imagen: "images/mochila.jpeg"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/mochila.jpeg",
+        precio: "$30.000"
     },
     {
         id: 4,
         nombre: "Reloj digital 3",
-        imagen: "images/reloj2.jpeg"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/reloj2.jpeg",
+        precio: "$15.000"
     },
     {
         id: 5,
         nombre: "Micros",
-        imagen: "images/micro.jpeg"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/micro.jpeg",
+        precio: "$80.000"
     },
     {
         id: 6,
         nombre: "Libros",
-        imagen: "images/libros.jpeg"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/libros.jpeg",
+        precio: "$10.000"
     },
     {
         id: 7,
         nombre: "apoya celulares",
-        imagen: "images/apoyacel.jpeg"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/apoyacel.jpeg",
+        precio: "$5.000"
     },
     {
         id: 8,
        nombre: "Clases privadas de programacion",
-        imagen: "images/clase.png"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/clase.png",
+        precio: "$12.000"
     },
     {
        id: 9,
         nombre: "cursos en vivo de programacion",
-        imagen: "images/vivo.png"
-        //"https://images.unsplash.com/photo-1542037104-5fb4bf6e9eba?q=80&w=600&auto=format&fit=crop"
+        imagen: "images/vivo.png",
+        precio: "$20.000"
     }
-
 ];
 
 // Estado de la aplicación
@@ -81,6 +81,7 @@ function initApp() {
     createIndicators();
     renderProduct(currentIndex);
     setupEventListeners();
+    renderGrid();
 }
 
 /**
@@ -181,6 +182,45 @@ function setupEventListeners() {
         if (e.key === 'ArrowRight') nextProduct();
         if (e.key === 'ArrowLeft') prevProduct();
     });
+}
+
+/**
+ * Renderiza el Grid de Productos
+ */
+function renderGrid() {
+    const gridContainer = document.getElementById('products-grid');
+    if (!gridContainer) return;
+
+    let gridHTML = '';
+
+    productos.forEach(product => {
+        const imageUrl = product.imagen && product.imagen.trim() !== "" ? product.imagen : PLACEHOLDER_IMAGE;
+
+        // Codificar mensaje para WhatsApp
+        const rawMessage = `Hola, me interesa el producto ${product.nombre} que está en tu página por ${product.precio}.`;
+        const encodedMessage = encodeURIComponent(rawMessage);
+
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        let finalWhatsAppUrl;
+        if (isMobile) {
+            finalWhatsAppUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+        } else {
+            finalWhatsAppUrl = `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
+        }
+
+        gridHTML += `
+            <div class="grid-item">
+                <img src="${imageUrl}" alt="${product.nombre}" class="grid-item-image" loading="lazy">
+                <h3 class="grid-item-name">${product.nombre}</h3>
+                <div class="grid-item-price">${product.precio || ''}</div>
+                <a href="${finalWhatsAppUrl}" target="_blank" rel="noopener noreferrer" class="grid-whatsapp-btn">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> Consultar
+                </a>
+            </div>
+        `;
+    });
+
+    gridContainer.innerHTML = gridHTML;
 }
 
 // Iniciar app cuando el DOM esté listo
