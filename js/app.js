@@ -25,7 +25,7 @@ const productos = [
         id: 3,
         nombre: "Mochilas",
         imagen: "images/mochila.jpeg",
-        precio: "$30.000"
+        precio: "$12.000"
     },
     {
         id: 4,
