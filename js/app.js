@@ -13,13 +13,13 @@ const productos = [
         id: 1,
         nombre: "Reloj digital 1",
         imagen: "images/reloj1.jpeg",
-        precio: "$15.000"
+        precio: "$9.000"
     },
     {
         id: 2,
         nombre: "Auriculares Inalámbricos Pro",
         imagen: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=600&auto=format&fit=crop",
-        precio: "$25.000"
+        precio: "$6.000"
     },
     {
         id: 3,
@@ -31,13 +31,13 @@ const productos = [
         id: 4,
         nombre: "Reloj digital 3",
         imagen: "images/reloj2.jpeg",
-        precio: "$15.000"
+        precio: "$11.000"
     },
     {
         id: 5,
         nombre: "Micros",
         imagen: "images/micro.jpeg",
-        precio: "$80.000"
+        precio: "consultar"
     },
     {
         id: 6,
@@ -61,7 +61,7 @@ const productos = [
        id: 9,
         nombre: "cursos en vivo de programacion",
         imagen: "images/vivo.png",
-        precio: "$20.000"
+        precio: "$8.000"
     }
 ];
 
